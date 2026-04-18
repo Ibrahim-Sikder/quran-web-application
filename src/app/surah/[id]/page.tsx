@@ -1,13 +1,10 @@
 import { SurahClient } from "@/components/SurahClient";
 import { getAllSurahIds, getCompleteSurahData } from "@/lib/quran-api";
 
-// Generate static paths for all surahs at build time
 export async function generateStaticParams() {
   const paths = await getAllSurahIds();
   return paths;
 }
-
-// Fetch data at build time
 async function getSurahData(id: string) {
   try {
     const { surahInfo, ayahs } = await getCompleteSurahData(id);

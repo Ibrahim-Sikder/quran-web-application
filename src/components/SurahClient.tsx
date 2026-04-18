@@ -46,7 +46,6 @@ export function SurahClient({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* Header */}
       <div className="bg-gradient-to-r from-emerald-700 to-teal-700 text-white">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
@@ -74,7 +73,6 @@ export function SurahClient({
         </div>
       </div>
 
-      {/* Search Bar */}
       <div className="container mx-auto px-4 py-6">
         <div className="relative">
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -88,7 +86,6 @@ export function SurahClient({
         </div>
       </div>
 
-      {/* Verses */}
       <div className="container mx-auto px-4 py-6">
         <div className="space-y-6">
           {filteredAyahs.map((ayah) => (

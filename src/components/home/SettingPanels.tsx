@@ -1,10 +1,13 @@
+// SettingsPanel.tsx (updated)
 "use client";
 
-import { X, Moon, Sun, Type, ZoomIn, ZoomOut, ChevronDown } from "lucide-react";
+import { X, Type, ZoomIn, ZoomOut, ChevronDown } from "lucide-react";
 import { Button } from "../ui/button";
 import { useSettings } from "@/context/SettingsContext";
 import { useState, useRef, useEffect } from "react";
 import { SettingsPanelProps } from "@/types/quran";
+import { fontOptions } from "@/constant/fontOptions";
+import { ThemeToggle } from "../ThemeToggle";
 
 export function SettingsPanel({ onClose }: SettingsPanelProps) {
   const { settings, updateSettings } = useSettings();
@@ -12,21 +15,6 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
   const [isFontDropdownOpen, setIsFontDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const fontOptions = [
-    {
-      value: "Noto Naskh Arabic",
-      label: "Noto Naskh Arabic",
-      className: "font-arabic-noto",
-    },
-    { value: "Amiri", label: "Amiri", className: "font-arabic-amiri" },
-    {
-      value: "Scheherazade New",
-      label: "Scheherazade New",
-      className: "font-arabic-scheherazade",
-    },
-  ];
-
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -78,44 +66,13 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
         </div>
 
         <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-          {/* Theme Toggle */}
-          <div className="space-y-2 sm:space-y-3">
-            <label className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-              <Sun className="h-3 w-3 sm:h-4 sm:w-4" /> Theme Preference
-            </label>
-            <div className="grid grid-cols-2 gap-2 sm:gap-3 ">
-              <button
-                onClick={() => updateSettings({ theme: "light" })}
-                className={`cursor-pointer p-2 sm:p-3 rounded-xl border-2 transition-all ${
-                  settings.theme === "light"
-                    ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20"
-                    : "border-gray-200 dark:border-gray-700 hover:border-emerald-300"
-                }`}
-              >
-                <Sun className="h-4 w-4 sm:h-5 sm:w-5 mx-auto mb-1" />
-                <span className="text-xs sm:text-sm font-medium">Light</span>
-              </button>
-              <button
-                onClick={() => updateSettings({ theme: "dark" })}
-                className={`cursor-pointer p-2 sm:p-3 rounded-xl border-2 transition-all ${
-                  settings.theme === "dark"
-                    ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20"
-                    : "border-gray-200 dark:border-gray-700 hover:border-emerald-300"
-                }`}
-              >
-                <Moon className="h-4 w-4 sm:h-5 sm:w-5 mx-auto mb-1" />
-                <span className="text-xs sm:text-sm font-medium">Dark</span>
-              </button>
-            </div>
-          </div>
+          <ThemeToggle />
 
-          {/* Arabic Font Style - Custom Dropdown for better mobile experience */}
+          {/* Arabic Font Style */}
           <div className="space-y-2 sm:space-y-3">
             <label className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
               <Type className="h-3 w-3 sm:h-4 sm:w-4" /> Arabic Font Style
             </label>
-
-            {/* Custom Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
@@ -151,7 +108,6 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
               )}
             </div>
 
-            {/* Preview Section */}
             <div className="mt-3 p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
               <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
                 Preview:
@@ -174,7 +130,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
             </div>
           </div>
 
-          {/* Arabic Font Size */}
+          {/* Arabic Text Size */}
           <div className="space-y-2 sm:space-y-3">
             <label className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
               <ZoomIn className="h-3 w-3 sm:h-4 sm:w-4" /> Arabic Text Size:{" "}
@@ -200,7 +156,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
               <span>32px</span>
               <span>40px</span>
             </div>
-            {/* Live Preview for size */}
+
             <p
               className="text-right mt-2 text-emerald-600 dark:text-emerald-400 break-words"
               style={{
@@ -212,7 +168,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
             </p>
           </div>
 
-          {/* Translation Font Size */}
+          {/* Translation Size */}
           <div className="space-y-2 sm:space-y-3">
             <label className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
               <ZoomOut className="h-3 w-3 sm:h-4 sm:w-4" /> Translation Size:{" "}
@@ -240,7 +196,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
               <span>20px</span>
               <span>24px</span>
             </div>
-            {/* Live Preview for translation size */}
+
             <p
               className="text-gray-600 dark:text-gray-400 mt-2 break-words"
               style={{ fontSize: `${settings.translationFontSize}px` }}
