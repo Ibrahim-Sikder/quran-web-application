@@ -34,3 +34,33 @@ export interface ApiResponse<T> {
         totalPage: number;
     };
 }
+export interface Settings {
+    arabicFont: string;
+    arabicFontSize: number;
+    translationFontSize: number;
+    theme: "light" | "dark";
+}
+
+export interface SettingsContextType {
+    settings: Settings;
+    updateSettings: (newSettings: Partial<Settings>) => void;
+    isLoaded: boolean;
+}
+
+export const defaultSettings: Settings = {
+    arabicFont: "Noto Naskh Arabic",
+    arabicFontSize: 24,
+    translationFontSize: 16,
+    theme: "light",
+};
+export interface SettingsPanelProps {
+    onClose: () => void;
+}
+export interface Surah {
+    id: number;
+    name: string;
+    englishName: string;
+    englishNameTranslation: string;
+    numberOfAyahs: number;
+    revelationType: string;
+}

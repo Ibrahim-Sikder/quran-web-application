@@ -1,17 +1,14 @@
 "use client";
 
 import { X, Moon, Sun, Type, ZoomIn, ZoomOut } from "lucide-react";
-import { Button } from "../button";
+import { Button } from "../ui/button";
 import { useSettings } from "@/context/SettingsContext";
-import { useEffect, useState } from "react";
-
-interface SettingsPanelProps {
-  onClose: () => void;
-}
+import { useState } from "react";
+import { SettingsPanelProps } from "@/types/quran";
 
 export function SettingsPanel({ onClose }: SettingsPanelProps) {
   const { settings, updateSettings } = useSettings();
-  const [previewText, setPreviewText] = useState("");
+  const [, setPreviewText] = useState("");
 
   const fontOptions = [
     {
@@ -29,9 +26,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
 
   const handleFontChange = (font: string) => {
     updateSettings({ arabicFont: font });
-    // Force immediate update on body
     document.body.style.setProperty("--arabic-font-family", font);
-    // Trigger re-render of preview
     setPreviewText(font);
   };
 
@@ -86,8 +81,6 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
               </button>
             </div>
           </div>
-
-          {/* Arabic Font Selection */}
           <div className="space-y-3">
             <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
               <Type className="h-4 w-4" /> Arabic Font Style
@@ -104,7 +97,6 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
               ))}
             </select>
 
-            {/* Live Preview with selected font */}
             <div className="mt-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
                 Preview:

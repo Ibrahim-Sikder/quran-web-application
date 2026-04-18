@@ -16,15 +16,7 @@ import {
 } from "@/components/ui/card";
 import { useSettings } from "@/context/SettingsContext";
 import { Input } from "@/components/ui/input";
-
-interface Surah {
-  id: number;
-  name: string;
-  englishName: string;
-  englishNameTranslation: string;
-  numberOfAyahs: number;
-  revelationType: string;
-}
+import { Surah } from "./types/quran";
 
 export default function Home() {
   const [surahs, setSurahs] = useState<Surah[]>([]);

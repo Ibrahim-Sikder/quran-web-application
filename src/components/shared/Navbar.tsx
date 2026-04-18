@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Settings, Home, BookOpen, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SettingsPanel } from "@/components/ui/home/SettingPanels";
+import { SettingsPanel } from "@/components/home/SettingPanels";
 
 export function Navbar() {
   const pathname = usePathname();

@@ -2,27 +2,8 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
+import { defaultSettings, Settings, SettingsContextType } from "@/types/quran";
 import React, { createContext, useContext, useEffect, useState } from "react";
-
-interface Settings {
-  arabicFont: string;
-  arabicFontSize: number;
-  translationFontSize: number;
-  theme: "light" | "dark";
-}
-
-interface SettingsContextType {
-  settings: Settings;
-  updateSettings: (newSettings: Partial<Settings>) => void;
-  isLoaded: boolean;
-}
-
-const defaultSettings: Settings = {
-  arabicFont: "Noto Naskh Arabic",
-  arabicFontSize: 24,
-  translationFontSize: 16,
-  theme: "light",
-};
 
 const SettingsContext = createContext<SettingsContextType | undefined>(
   undefined,

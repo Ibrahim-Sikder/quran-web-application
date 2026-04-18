@@ -8,23 +8,8 @@ import { useSettings } from "@/context/SettingsContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-
-interface Ayah {
-  chapter: number;
-  verse: number;
-  arabic: string;
-  translation: string;
-  transliteration: string;
-}
-
-interface SurahInfo {
-  id: number;
-  name: string;
-  englishName: string;
-  englishNameTranslation: string;
-  numberOfAyahs: number;
-  revelationType: string;
-}
+import { SurahInfo } from "@/app/types/quran";
+import { Ayah } from "@/types/quran";
 
 export default function SurahPage() {
   const params = useParams();
