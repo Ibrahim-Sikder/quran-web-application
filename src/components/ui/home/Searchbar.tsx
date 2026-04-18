@@ -1,9 +1,10 @@
 "use client";
 
 import { Search, X } from "lucide-react";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+
 import { useState } from "react";
+import { Input } from "../input";
+import { Button } from "../button";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;

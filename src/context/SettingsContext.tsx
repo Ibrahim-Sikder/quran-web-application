@@ -1,19 +1,12 @@
-// context/SettingsContext.tsx
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-  useRef,
-} from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-export interface Settings {
+interface Settings {
   arabicFont: string;
   arabicFontSize: number;
   translationFontSize: number;
+  theme: "light" | "dark";
 }
 
 interface SettingsContextType {
@@ -23,49 +16,48 @@ interface SettingsContextType {
 }
 
 const defaultSettings: Settings = {
-  arabicFont: "Traditional Arabic",
-  arabicFontSize: 28,
+  arabicFont: "Noto Naskh Arabic",
+  arabicFontSize: 24,
   translationFontSize: 16,
+  theme: "light",
 };
 
 const SettingsContext = createContext<SettingsContextType | undefined>(
   undefined,
 );
 
-export function SettingsProvider({ children }: { children: ReactNode }) {
+export function SettingsProvider({ children }: { children: React.ReactNode }) {
   const [settings, setSettings] = useState<Settings>(defaultSettings);
   const [isLoaded, setIsLoaded] = useState(false);
-  const isInitialMount = useRef(true);
 
   useEffect(() => {
-    // Load settings from localStorage on mount
     const saved = localStorage.getItem("quran-settings");
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        setSettings({ ...defaultSettings, ...parsed });
-      } catch (error) {
-        console.error("Failed to parse settings:", error);
+        setSettings(parsed);
+        if (parsed.theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      } catch (e) {
+        console.error("Error loading settings:", e);
       }
     }
     setIsLoaded(true);
-  }, []); // Empty dependency array - only runs once on mount
-
-  useEffect(() => {
-    // Skip the initial mount to prevent unnecessary writes
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      return;
-    }
-
-    // Save to localStorage whenever settings change (after initial load)
-    if (isLoaded) {
-      localStorage.setItem("quran-settings", JSON.stringify(settings));
-    }
-  }, [settings, isLoaded]);
+  }, []);
 
   const updateSettings = (newSettings: Partial<Settings>) => {
-    setSettings((prev) => ({ ...prev, ...newSettings }));
+    const updated = { ...settings, ...newSettings };
+    setSettings(updated);
+    localStorage.setItem("quran-settings", JSON.stringify(updated));
+
+    if (updated.theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   };
 
   return (
@@ -77,8 +69,8 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
 export const useSettings = () => {
   const context = useContext(SettingsContext);
-  if (context === undefined) {
-    throw new Error("useSettings must be used within a SettingsProvider");
+  if (!context) {
+    throw new Error("useSettings must be used within SettingsProvider");
   }
   return context;
 };
