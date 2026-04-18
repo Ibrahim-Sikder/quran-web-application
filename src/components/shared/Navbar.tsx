@@ -1,11 +1,26 @@
 "use client";
 
-import { SettingsPanel } from "@/components/home/SettingPanels";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Home, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import dynamic from "next/dynamic";
+
+const SettingsPanel = dynamic(
+  () =>
+    import("@/components/home/SettingPanels").then((mod) => mod.SettingsPanel),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+        <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
+          <div className="animate-pulse">Loading settings...</div>
+        </div>
+      </div>
+    ),
+  },
+);
 
 export function Navbar() {
   const pathname = usePathname();
@@ -51,7 +66,17 @@ export function Navbar() {
       </nav>
 
       {isSettingsOpen && (
-        <SettingsPanel onClose={() => setIsSettingsOpen(false)} />
+        <Suspense
+          fallback={
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+              <div className="bg-white dark:bg-gray-900 p-6 rounded-xl">
+                Loading...
+              </div>
+            </div>
+          }
+        >
+          <SettingsPanel onClose={() => setIsSettingsOpen(false)} />
+        </Suspense>
       )}
     </>
   );
