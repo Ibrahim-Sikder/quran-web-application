@@ -13,6 +13,7 @@ export interface Ayah {
     arabic: string;
     translation: string;
     transliteration: string;
+    id?: string;
 }
 
 export interface SearchResult {
