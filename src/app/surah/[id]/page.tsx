@@ -7,7 +7,6 @@ import { useSettings } from "@/context/SettingsContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Navbar } from "@/components/shared/Navbar";
 
 interface Ayah {
   chapter: number;
@@ -87,8 +86,6 @@ export default function SurahPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <Navbar />
-
       {/* Header */}
       <div className="bg-gradient-to-r from-emerald-700 to-teal-700 text-white">
         <div className="container mx-auto px-4 py-6">

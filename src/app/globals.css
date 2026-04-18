@@ -48,6 +48,10 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* Root variables for dynamic fonts */
+:root {
+  --arabic-font-family: "Noto Naskh Arabic", "Amiri", "Scheherazade New", serif;
+}
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -81,6 +85,10 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+html,
+body {
+  --arabic-font-family: "Noto Naskh Arabic", "Amiri", "Scheherazade New", serif;
 }
 
 .dark {
@@ -128,3 +136,65 @@
     @apply font-sans;
   }
 }
+
+/* Add after your existing CSS */
+
+/* Arabic Text Styling */
+.arabic-text {
+  font-family: "Noto Naskh Arabic", "Amiri", "Scheherazade New", serif;
+  line-height: 2.2;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Font classes */
+.font-arabic {
+  font-family: "Noto Naskh Arabic", "Amiri", "Scheherazade New", serif;
+}
+
+.font-heading {
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+}
+
+/* Dark mode transitions */
+.dark {
+  color-scheme: dark;
+}
+
+/* Smooth theme transition */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Arabic Text Global Style */
+.arabic-text {
+  font-family: var(--arabic-font-family) !important;
+  line-height: 2.2;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+/* Arabic font classes for dynamic application */
+.font-arabic-noto {
+  font-family: "Noto Naskh Arabic", serif;
+}
+
+.font-arabic-amiri {
+  font-family: "Amiri", serif;
+}
+
+.font-arabic-scheherazade {
+  font-family: "Scheherazade New", serif;
+}
+
+/* Rest of your existing CSS... */

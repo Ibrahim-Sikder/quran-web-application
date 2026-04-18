@@ -16,7 +16,6 @@ export function Navbar() {
       <nav className="sticky top-0 z-50 bg-gradient-to-r from-emerald-700 to-teal-700 text-white shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
               <BookOpen className="h-6 w-6 group-hover:rotate-12 transition-transform" />
               <span className="font-bold text-lg hidden sm:inline">
@@ -24,7 +23,6 @@ export function Navbar() {
               </span>
             </Link>
 
-            {/* Navigation Links */}
             <div className="flex items-center gap-1">
               <Link href="/">
                 <Button
@@ -65,7 +63,6 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Settings Panel */}
       {isSettingsOpen && (
         <SettingsPanel onClose={() => setIsSettingsOpen(false)} />
       )}

@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/card";
 import { useSettings } from "@/context/SettingsContext";
 import { Input } from "@/components/ui/input";
-import { Navbar } from "@/components/shared/Navbar";
 
 interface Surah {
   id: number;
@@ -93,8 +92,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <Navbar />
-
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-emerald-700 to-teal-700 text-white">
         <div className="container mx-auto px-4 py-12">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { SettingsProvider } from "@/context/SettingsContext";
+import { Navbar } from "@/components/shared/Navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
@@ -34,7 +35,10 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <SettingsProvider>{children}</SettingsProvider>
+        <SettingsProvider>
+          <Navbar />
+          {children}
+        </SettingsProvider>
       </body>
     </html>
   );

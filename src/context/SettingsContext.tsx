@@ -41,12 +41,21 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
         } else {
           document.documentElement.classList.remove("dark");
         }
+        // Apply font to root element
+        applyFontToRoot(parsed.arabicFont);
       } catch (e) {
         console.error("Error loading settings:", e);
       }
     }
     setIsLoaded(true);
   }, []);
+
+  const applyFontToRoot = (font: string) => {
+    // Apply font to root element for global usage
+    document.documentElement.style.setProperty("--arabic-font-family", font);
+    // Also apply to body for arabic-text class
+    document.body.style.setProperty("--arabic-font-family", font);
+  };
 
   const updateSettings = (newSettings: Partial<Settings>) => {
     const updated = { ...settings, ...newSettings };
@@ -57,6 +66,11 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
+    }
+
+    // Apply font globally when changed
+    if (updated.arabicFont) {
+      applyFontToRoot(updated.arabicFont);
     }
   };
 
