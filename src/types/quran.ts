@@ -1,16 +1,36 @@
-// types/quran.ts
 export interface Surah {
-    number: number;
+    id: number;
     name: string;
     englishName: string;
-    arabicName: string;
-    revelationType: string;
+    englishNameTranslation: string;
     numberOfAyahs: number;
+    revelationType: string;
 }
 
 export interface Ayah {
-    number: number;
-    numberInSurah: number;
+    chapter: number;
+    verse: number;
     arabic: string;
     translation: string;
+    transliteration: string;
+}
+
+export interface SearchResult {
+    chapter: number;
+    verse: number;
+    arabic: string;
+    translation: string;
+    transliteration: string;
+}
+
+export interface ApiResponse<T> {
+    success: boolean;
+    message?: string;
+    data: T;
+    meta?: {
+        page: number;
+        limit: number;
+        total: number;
+        totalPage: number;
+    };
 }

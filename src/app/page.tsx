@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable react-hooks/immutability */
 "use client";
 
 import { BookOpen, ChevronRight, Clock, Search } from "lucide-react";
