@@ -71,7 +71,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+            className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
           >
             <X className="h-5 w-5" />
           </Button>
