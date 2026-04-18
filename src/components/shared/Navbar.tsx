@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { SettingsPanel } from "@/components/home/SettingPanels";
+import { Button } from "@/components/ui/button";
+import { BookOpen, Home, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Settings, Home, BookOpen, Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { SettingsPanel } from "@/components/home/SettingPanels";
+import { useState } from "react";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -34,19 +34,6 @@ export function Navbar() {
                 >
                   <Home className="h-4 w-4 mr-1" />
                   <span className="hidden sm:inline">Home</span>
-                </Button>
-              </Link>
-
-              <Link href="/search">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className={`text-white hover:bg-white/20 ${
-                    pathname === "/search" ? "bg-white/20" : ""
-                  }`}
-                >
-                  <Search className="h-4 w-4 mr-1" />
-                  <span className="hidden sm:inline">Search</span>
                 </Button>
               </Link>
 

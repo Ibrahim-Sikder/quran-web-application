@@ -1,4 +1,4 @@
-// types/quran.ts
+
 export interface Surah {
     number: number;
     name: string;
@@ -6,7 +6,7 @@ export interface Surah {
     englishNameTranslation: string;
     numberOfAyahs: number;
     revelationType: string;
-    id: string;
+    id: number;
 }
 
 export interface Ayah {
