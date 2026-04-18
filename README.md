@@ -6,7 +6,7 @@
 
 ## 🚀 Live Demo
 
-🔗 https://quran-web-application-five.vercel.app/
+🔗 https://quran-web-application-mocha.vercel.app/
 
 ---
 
